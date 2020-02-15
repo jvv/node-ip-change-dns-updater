@@ -1,0 +1,21 @@
+{
+  "name": "node-ip-change-dns-updater",
+  "version": "1.0.0",
+  "description": "Checks the dynamic IP address distributed by your ISP for changes and updates the DNS on change",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joost van Velzen",
+  "license": "ISC",
+  "dependencies": {
+    "@types/ip-address": "^5.8.2",
+    "fs-extra": "^8.1.0",
+    "ip-address": "^6.2.0",
+    "transip": "0.0.6"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.1",
+    "@types/webpack-env": "^1.15.1"
+  }
+}
