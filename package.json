@@ -16,7 +16,8 @@
     "@types/ip-address": "^5.8.2",
     "fs-extra": "^8.1.0",
     "ip-address": "^6.2.0",
-    "transip": "0.0.6"
+    "transip": "0.0.6",
+    "lodash": ">=4.17.12"
   },
   "devDependencies": {
     "@types/node": "^13.7.1",

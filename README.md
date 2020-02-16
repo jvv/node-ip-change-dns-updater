@@ -18,6 +18,7 @@ Edit the config. The TransIP key can be requested at the control panel of TransI
 ## Running the script
 
 ``` node ./index.js```
+
 I'm running this script every 5 minutes through cron
 
 ### Features
