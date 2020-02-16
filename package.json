@@ -8,6 +8,10 @@
   },
   "author": "Joost van Velzen",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jvv/node-ip-change-dns-updater.git"
+  },
   "dependencies": {
     "@types/ip-address": "^5.8.2",
     "fs-extra": "^8.1.0",
