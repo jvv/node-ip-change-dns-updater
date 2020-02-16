@@ -7,7 +7,9 @@ Note: Only transip.nl (currently) supported
 ## Installation
 
 - clone repository
+- cd into repository directory
 - ```npm install```
+- ```mkdir data```
 
 ## Configuration
 
