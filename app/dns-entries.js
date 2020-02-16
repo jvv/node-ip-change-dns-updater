@@ -99,7 +99,7 @@ const validateDnsEntry = function(data) {
     if(data.dnsEntries.find(entry => entry.name === config.dnsEntry)) {
         data.dnsEntries.find(entry => entry.name === config.dnsEntry).content = data.externalIp;
     } else {
-        data.dnsEntries.push({name: config.dnsEntry, expire: '300', type: 'A', content: data.externalIp});
+        data.dnsEntries.push({name: config.dnsEntry, expire: config.ttl, type: 'A', content: data.externalIp});
     }
     return data;
 }
