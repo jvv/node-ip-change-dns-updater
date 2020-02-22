@@ -17,6 +17,17 @@ Note: Only transip.nl (currently) supported
 
 Edit the config. The TransIP key can be requested at the control panel of TransIP.
 
+|         Key        |                                                           Value                                                           |
+|:------------------:|:-------------------------------------------------------------------------------------------------------------------------:|
+| domain             | The tld domain you own & want to use for VPN.                                                                             |
+| dnsEntry           | The `name` field of the DNS entry you want to use. (e.g. 'vpn').                                                          |
+| cacheValid         | In minutes: how long local cache should be honored (e.g. when to call TransIP's API for retrieving of your DNS settings). |
+| ttl                | In seconds: TTL setting of the DNS entry.                                                                                 |
+| dataDir            | Path to the directory where your cached version of the DNS will be saved.                                                 |
+| transip            | Object holding login & privateKey                                                                                         |
+| transip.login      | The username you use to login into TransIP's control panel.                                                               |
+| transip.privateKey | The private key that you can retrieve from TransIP's control panel.                                                       |
+
 ## Running the script
 
 ``` node ./index.js```
