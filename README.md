@@ -21,7 +21,9 @@ Edit the config. The TransIP key can be requested at the control panel of TransI
 
 ``` node ./index.js```
 
-I'm running this script every 5 minutes through cron
+I'm running this script every hour through cron as such:
+
+```* */1 * * * /usr/bin/node /path/to/node-ip-change-dns-updater/index.js >> /path/to/logs/node-ip-change-dns-updater.log```
 
 ### Features
 
