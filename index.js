@@ -34,28 +34,41 @@ function setDnsEntries(output) {
         })
 }
 
-externalIp.getIp()
-    .then((ip) => {
-        doLog('info', `The current external IP address is ${ip}`);
-        output.externalIp = ip;
-        
-        doLog('info', 'Set DNS entries after externalIp.getIp()');
-        setDnsEntries(output);
-    }).catch(error => {
-        doLog('error', error);
-    });
+const getExternalIp = new Promise( (resolve, reject) => {
+    externalIp.getIp()
+        .then((ip) => {
+            doLog('info', `The current external IP address is ${ip}`);
+            output.externalIp = ip;
+            doLog('info', 'Set DNS entries after externalIp.getIp()');
+            resolve();
+        }).catch(error => {
+            doLog('error', error);
+            reject(error);
+        });
+});
 
-dnsEntries.getDnsEntries()
-    .then((data) => {
-        doLog('info', `DNS entries from ${config.domain} succesfully returned`);
-        output.dnsEntries = data;
-        if(output.dnsEntries.find(entry => entry.name === config.dnsEntry)) {
-            output.knownIp = output.dnsEntries.find(entry => entry.name === config.dnsEntry).content;
-        }
 
-        doLog('info', 'Set DNS entries after dnsEntries.getDnsEntries()');
-        setDnsEntries(output);
+const getDnsEntriesFromHost = new Promise( (resolve, reject) => {
+    dnsEntries.getDnsEntries()
+        .then((data) => {
+            doLog('info', `DNS entries from ${config.domain} succesfully returned`);
+            output.dnsEntries = data;
+            if(output.dnsEntries.find(entry => entry.name === config.dnsEntry)) {
+                output.knownIp = output.dnsEntries.find(entry => entry.name === config.dnsEntry).content;
+            }
+            doLog('info', 'Set DNS entries after dnsEntries.getDnsEntries()');
+            resolve();
+        })
+        .catch(error => {
+            doLog('error', error);
+            reject(error);
+        })
+});
+
+
+Promise.all([getExternalIp, getDnsEntriesFromHost])
+    .then((result) => {
+        doLog('info', 'Promise.all finished');
+        setDnsEntries(output)
     })
-    .catch(error => {
-        doLog('error', error);
-    })
+    .catch(error => doLog('error', error));

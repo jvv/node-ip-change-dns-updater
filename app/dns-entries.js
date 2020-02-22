@@ -18,12 +18,11 @@ const cachedDnsEntriesValid = function() {
     return new Promise((resolve, reject) => {
         fs.stat(`${config.dataDir}${config.domain}.json`, function(err, stats){
             if(typeof stats === "undefined") {
-                // @todo - why do I need return here?
                 return reject('File does not exist');
             }
             const minutes = ((new Date().getTime() - stats.mtime) / 1000) / 60;
             if(config.cacheValid > minutes) {
-                resolve('Cache available and recent');
+                return resolve('Cache available and recent');
             } 
             reject('Cache available but older than allowed');
         });    
@@ -45,7 +44,7 @@ const getDnsEntriesFromCache = function() {
     return new Promise((resolve, reject) => {
         fs.readJson(`${config.dataDir}${config.domain}.json`, (err, data) => {
             if (err) {
-                reject(err);
+                return reject(err);
             }
             resolve(data);
           })
@@ -56,7 +55,7 @@ const setDnsEntriesCache = function(dnsEntries) {
     return new Promise((resolve, reject) => {
         fs.writeJson(`${config.dataDir}${config.domain}.json`, dnsEntries, err => {
             if (err) { 
-                reject(err)
+                return reject(err)
             } 
             resolve('DNS entries cached.');
           });
